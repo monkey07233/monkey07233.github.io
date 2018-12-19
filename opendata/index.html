@@ -66,10 +66,10 @@
         function loop() {
             if (cpf) {
                 if (category == "微量級") {
-                    cpf.request('["tone_play",8,440,500]');
+                    cpf.request('["tone_play",8,440,500],["grove_rgblcd_set_rgb",0,0,255]');
                 } else if (category == "低量級") {
                     for (var i = 0; i < 3; i++) {
-                        cpf.request('["tone_play",8,440,500]');
+                        cpf.request('["tone_play",8,440,500],["grove_rgblcd_set_rgb",0,255,255]');
                     }
                 }
             }
@@ -79,7 +79,7 @@
         //cpf setup
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"] ,["setPinMode", "digital", 8, "TONE"]');
+                cpf.setPinMode('["resetPin"] ,["setPinMode", "digital", 8, "TONE"],["grove_rgblcd_begin", 16, 2]');
                 cpf.request('["grove_rgblcd_clear"]');
             }
         }
