@@ -44,9 +44,7 @@
                             $('#area').append('<option value="' + e.SiteName + '">' + e.SiteName + '</option>');
                         }
                     });
-                })
 
-                $('#area').change(function () {
                     myArea = $('#area').val();
                     data.forEach(function (e, i) {
                         if (e.SiteName == myArea) {
