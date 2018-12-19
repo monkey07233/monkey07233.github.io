@@ -65,9 +65,9 @@
         function loop() {
             if (cpf) {
                 if (category == "微量級") {
-                    cpf.request('["tone_play",8,440,500],["grove_rgblcd_set_rgb",0,232,0]');
+                    cpf.request('["tone_play",8,329,500],["grove_rgblcd_set_rgb",0,232,0]');
                 } else if (category == "低量級") {
-                    cpf.request('["tone_play",8,440,500],["grove_rgblcd_set_rgb",255,255,0]');
+                    cpf.request('["tone_play",8,493,500],["grove_rgblcd_set_rgb",255,255,0]');
                 }
             }
             setTimeout(loop, 1000);
