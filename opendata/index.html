@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <select id="city">
+        <option value="choose">請選擇</option>
+    </select>
+    <select id="area">
+        <option value="choose">請選擇</option>
+    </select>
+
+    <script>
+        var county = [];
+        var myCity, myArea, UVI, category, color;
+        window.onload = function () {
+            $.get("http://opendata2.epa.gov.tw/UV/UV.json", function (data) {
+                console.log(data);
+                data.forEach(function (e, i) {
+                    county[i] = e.County;
+                });
+                console.log(county);
+                result = county.filter(function (value, index, arr) {
+                    return arr.indexOf(value) === index;
+                });
+                console.log(result);
+
+                result.forEach(function (e) {
+                    $('#city').append('<option value="' + e + '">' + e + '</option>');
+                });
+
+                $('#city').change(function () {
+                    myCity = $('#city').val();
+                    $('#area').html('');
+                    data.forEach(function (e, i) {
+                        if (e.County == myCity) {
+                            $('#area').append('<option value="' + e.SiteName + '">' + e.SiteName + '</option>');
+                        }
+                    });
+                })
+
+                myArea = $('#area').val();
+                $content.html('');
+                data.forEach(function (e, i) {
+                    if (e.SiteName == myArea) {
+                        UVI = e["UVI"];
+                        if (UVI <= 2) {
+                            category = "微量級";
+                            color = "0,232,0";
+                        } else if (UVI >= 3 && UVI <= 5) {
+                            category = "低量級";
+                            color = "255,255,0";
+                        }
+                    }
+                })
+            });
+        }
+        setup();
+        function loop() {
+            if (cpf) {
+                if (category == "微量級") {
+                    cpf.request('["tone_play",8,440,500]');
+                } else if (category == "低量級") {
+                    for (var i = 0; i < 3; i++) {
+                        cpf.request('["tone_play",8,440,500]');
+                    }
+                }
+            }
+            setTimeout(loop, 1000);
+        }
+        loop();
+        //cpf setup
+        function setup() {
+            if (cpf) {
+                cpf.setPinMode('["resetPin"] ,["setPinMode", "digital", 8, "TONE"]');
+                cpf.request('["grove_rgblcd_clear"]');
+            }
+        }
+    </script>
+</body>
+
+</html>
