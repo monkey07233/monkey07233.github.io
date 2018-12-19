@@ -34,13 +34,12 @@
                 tempdata = cpf.get("temperature sensor");
                 celsius = toCelsius(tempdata);
                 document.getElementById("temp").innerHTML = celsius;
-                touch = cpf.get("Touch");
 
                 if (celsius >= -30 && celsius <= 50) { //一般溫度計溫度範圍
                     degree = Math.floor((180 / 80) * celsius + 67.5);
                     document.getElementById("pointer").style.transform = "rotate(" + degree + "deg)";
                     document.getElementById("degree").innerHTML = degree;
-                    cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + '],["grove_rgblcd_set_rgb",0,0,255],["grove_rgblcd_print",0,1,"' + touch + '"],["tone_play",8,440,500],["sleep",500]');
+                    cpf.request('["analogWrite", 4,' + Math.abs(degree - 180) + '],["grove_rgblcd_set_rgb",0,0,255],["grove_rgblcd_print",0,1,"' + celsius + '"],["tone_play",8,440,500],["sleep",500]');
                     // cpf.request('["grove_rgblcd_set_rgb",255,255,0]');                   
                     // cpf.request('["grove_rgblcd_print",0,1,'+degree+']');
                 }
