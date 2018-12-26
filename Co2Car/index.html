@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/xss/bootstrap.min.css">
+    <title>car</title>
+</head>
+
+<body>
+    <h1>car</h1>
+    <div class="container">
+        <div class="col-xs-12">
+            <h3>co2:<span id="co2">none</span>ﾟ</h3>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/xss/bootstrap.min.js"></script>
+
+    <script>
+        var co2;
+        setup();
+        function loop() {
+            if (cpf) {
+                co2 = cpf.get("a0");
+                document.getElementById("co2").innerHTML = co2;
+            }
+            setTimeout(loop, 1000);
+        }
+        loop();
+        //cpf setup
+        function setup() {
+            if (cpf) {
+                cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 0,"INPUT"]');
+            }
+        }
+    </script>
+</body>
+
+</html>
