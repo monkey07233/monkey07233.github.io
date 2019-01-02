@@ -24,7 +24,7 @@
         setup();
         function loop() {
             if (cpf) {
-                cpf.request("analogWrite",3,100);
+                cpf.request("digitalWrite",3,100);
                 // co2 = cpf.get("a0");
                 // document.getElementById("co2").innerHTML = co2;              
             }
