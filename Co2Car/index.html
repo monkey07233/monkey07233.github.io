@@ -23,8 +23,8 @@
         var co2;
         setup();
         function loop() {
-            if (cpf) {         
-                cpf.set("d3","pwm",100);              
+            if (cpf) {
+                cpf.set("d3","PWM",100);              
                 co2 = cpf.get("a0");
                 document.getElementById("co2").innerHTML = co2;                     
             }
