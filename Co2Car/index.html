@@ -24,7 +24,7 @@
         setup();
         function loop() {
             if (cpf) {
-                cpf.set("d3","pwm",100);
+                cpf.set("d3",100);
                 // co2 = cpf.get("a0");
                 // document.getElementById("co2").innerHTML = co2;              
             }
@@ -34,7 +34,7 @@
         //cpf setup
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 0,"INPUT"] ,["setPinMode", "digital", 3,"PWM"]');
+                cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 0,"INPUT"] ,["setPinMode", "digital", 3,"OUTPUT"]');
             }
         }
     </script>
