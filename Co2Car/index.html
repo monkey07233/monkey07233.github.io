@@ -27,7 +27,7 @@
                 // cpf.request('["analogWrite",3,100]');              
                 co2 = cpf.get("a0");
                 document.getElementById("co2").innerHTML = co2;  
-                if(c02>300){
+                if(co2 > 300){
                     cpf.request('["analogWrite",3,230]');   
                 }else{
                     cpf.request('["analogWrite",3,50]');   
