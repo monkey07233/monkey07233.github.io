@@ -25,6 +25,11 @@
         function loop() {
             if (cpf) {
                 co2 = cpf.get("a0");
+                if (co2 > 300) {
+                    cpf.set("d3", 230);
+                }else{
+                    cpf.set("d3", 50);
+                }
                 document.getElementById("co2").innerHTML = co2;
             }
             setTimeout(loop, 1000);
@@ -33,7 +38,7 @@
         //cpf setup
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 0,"INPUT"]');
+                cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 0,"INPUT"] ,["setPinMode", "digital", 3,"OUTPUT"]');
             }
         }
     </script>
