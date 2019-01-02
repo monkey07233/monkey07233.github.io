@@ -23,10 +23,10 @@
         var co2;
         setup();
         function loop() {
-            if (cpf) {
-                cpf.request("digitalWrite",3,100);
+            if (cpf) {               
                 co2 = cpf.get("a0");
-                document.getElementById("co2").innerHTML = co2;              
+                document.getElementById("co2").innerHTML = co2;
+                cpf.request("digitalWrite",3,100);              
             }
             setTimeout(loop, 1000);
         }
