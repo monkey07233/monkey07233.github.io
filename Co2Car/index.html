@@ -24,9 +24,9 @@
         setup();
         function loop() {
             if (cpf) {
-                cpf.set("digitalWrite",3,100);
-                // co2 = cpf.get("a0");
-                // document.getElementById("co2").innerHTML = co2;              
+                cpf.request("digitalWrite",3,100);
+                co2 = cpf.get("a0");
+                document.getElementById("co2").innerHTML = co2;              
             }
             setTimeout(loop, 1000);
         }
