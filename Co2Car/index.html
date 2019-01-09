@@ -32,9 +32,12 @@
                 }else if(co2 >= 200 && co2 <=300){
                     cpf.request('["analogWrite",3,150],["analogWrite",5,150]');
                 }
-                else{
+                else if(co2 >= 100 && co2 < 200){
                     cpf.request('["analogWrite",3,50],["analogWrite",5,50]'); 
                 }                    
+                else{
+                    cpf.request('["analogWrite",3,0],["analogWrite",5,0]'); 
+                }
             }
             setTimeout(loop, 1000);
         }
