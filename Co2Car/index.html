@@ -14,29 +14,44 @@
     <h1>car</h1>
     <div class="container">
         <div class="col-xs-12">
-            <h3>co2:<span id="co2">none</span></h3>
+            <h3>co2_left:<span id="co2_left">none</span></h3>
+            <h3>co2_right:<span id="co2_right">none</span></h3>
         </div>
     </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/xss/bootstrap.min.js"></script>
 
     <script>
-        var co2;
+        var co2_left,co2_right;
         setup();
         function loop() {
             if (cpf) {
                 // cpf.request('["analogWrite",3,100]');              
-                co2 = cpf.get("a0");
-                document.getElementById("co2").innerHTML = co2;  
-                if(co2 > 300){
-                    cpf.request('["analogWrite",3,255],["analogWrite",5,255]'); 
-                }else if(co2 >= 200 && co2 <=300){
-                    cpf.request('["analogWrite",3,150],["analogWrite",5,150]');
+                co2_left = cpf.get("a0");
+                co2_right = cpf.get("a1");
+                document.getElementById("co2_left").innerHTML = co2_left; 
+                document.getElementById("co2_right").innerHTML = co2_right; 
+                if(co2_left > 300){
+                    cpf.request('["analogWrite",5,255]'); 
+                }else if(co2_left >= 200 && co2_left <=300){
+                    cpf.request('["analogWrite",5,150]');
                 }
-                else if(co2 >= 100 && co2 < 200){
-                    cpf.request('["analogWrite",3,50],["analogWrite",5,50]'); 
+                else if(co2_left >= 100 && co2_left < 200){
+                    cpf.request('["analogWrite",5,50]'); 
                 }                    
                 else{
-                    cpf.request('["analogWrite",3,0],["analogWrite",5,0]'); 
+                    cpf.request('["analogWrite",5,0]'); 
+                }
+
+                if(co2_right > 300){
+                    cpf.request('["analogWrite",3,255]'); 
+                }else if(co2_right >= 200 && co2_right <=300){
+                    cpf.request('["analogWrite",3,150]');
+                }
+                else if(co2_right >= 100 && co2_right < 200){
+                    cpf.request('["analogWrite",3,50]'); 
+                }                    
+                else{
+                    cpf.request('["analogWrite",3,0]'); 
                 }
             }
             setTimeout(loop, 1000);
@@ -45,7 +60,7 @@
         //cpf setup
         function setup() {
             if (cpf) {
-                cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 0,"INPUT"] ,["setPinMode", "digital", 3,"PWM"] ,["setPinMode", "digital", 5,"PWM"]');
+                cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 0,"INPUT"] ,["setPinMode", "analog", 1,"INPUT"] ,["setPinMode", "digital", 3,"PWM"] ,["setPinMode", "digital", 5,"PWM"]');
             }
         }
     </script>
