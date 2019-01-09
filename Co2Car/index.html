@@ -21,37 +21,57 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/xss/bootstrap.min.js"></script>
 
     <script>
-        var co2_left,co2_right;
+        var co2_left, co2_right;
         setup();
         function loop() {
             if (cpf) {
                 // cpf.request('["analogWrite",3,100]');              
                 co2_left = cpf.get("a0");
                 co2_right = cpf.get("a1");
-                document.getElementById("co2_left").innerHTML = co2_left; 
-                document.getElementById("co2_right").innerHTML = co2_right; 
-                if(co2_left > 300){
-                    cpf.request('["analogWrite",5,255]'); 
-                }else if(co2_left >= 200 && co2_left <=300){
-                    cpf.request('["analogWrite",5,150]');
+                document.getElementById("co2_left").innerHTML = co2_left;
+                document.getElementById("co2_right").innerHTML = co2_right;
+                if (co2_left > 300) {
+                    if (co2_right > 300) {
+                        cpf.request('["analogWrite",5,255],["analogWrite",3,255]');
+                    } else if (co2_right >= 200 && co2_right <= 300) {
+                        cpf.request('["analogWrite",5,255],["analogWrite",3,150]');
+                    } else if (co2_right >= 100 && co2_right < 200) {
+                        cpf.request('["analogWrite",5,255],["analogWrite",3,50]');
+                    } else {
+                        cpf.request('["analogWrite",5,255],["analogWrite",3,0]');
+                    }
+                } else if (co2_left >= 200 && co2_left <= 300) {
+                    if (co2_right > 300) {
+                        cpf.request('["analogWrite",5,150],["analogWrite",3,255]');
+                    } else if (co2_right >= 200 && co2_right <= 300) {
+                        cpf.request('["analogWrite",5,150],["analogWrite",3,150]');
+                    } else if (co2_right >= 100 && co2_right < 200) {
+                        cpf.request('["analogWrite",5,150],["analogWrite",3,50]');
+                    } else {
+                        cpf.request('["analogWrite",5,150],["analogWrite",3,0]');
+                    }
                 }
-                else if(co2_left >= 100 && co2_left < 200){
-                    cpf.request('["analogWrite",5,50]'); 
-                }                    
-                else{
-                    cpf.request('["analogWrite",5,0]'); 
+                else if (co2_left >= 100 && co2_left < 200) {
+                    if (co2_right > 300) {
+                        cpf.request('["analogWrite",5,50],["analogWrite",3,255]');
+                    } else if (co2_right >= 200 && co2_right <= 300) {
+                        cpf.request('["analogWrite",5,50],["analogWrite",3,150]');
+                    } else if (co2_right >= 100 && co2_right < 200) {
+                        cpf.request('["analogWrite",5,50],["analogWrite",3,50]');
+                    } else {
+                        cpf.request('["analogWrite",5,50],["analogWrite",3,0]');
+                    }
                 }
-
-                if(co2_right > 300){
-                    cpf.request('["analogWrite",3,255]'); 
-                }else if(co2_right >= 200 && co2_right <=300){
-                    cpf.request('["analogWrite",3,150]');
-                }
-                else if(co2_right >= 100 && co2_right < 200){
-                    cpf.request('["analogWrite",3,50]'); 
-                }                    
-                else{
-                    cpf.request('["analogWrite",3,0]'); 
+                else {
+                    if (co2_right > 300) {
+                        cpf.request('["analogWrite",5,0],["analogWrite",3,255]');
+                    } else if (co2_right >= 200 && co2_right <= 300) {
+                        cpf.request('["analogWrite",5,0],["analogWrite",3,150]');
+                    } else if (co2_right >= 100 && co2_right < 200) {
+                        cpf.request('["analogWrite",5,0],["analogWrite",3,50]');
+                    } else {
+                        cpf.request('["analogWrite",5,0],["analogWrite",3,0]');
+                    }
                 }
             }
             setTimeout(loop, 1000);
