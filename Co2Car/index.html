@@ -30,45 +30,45 @@
                 co2_right = cpf.get("a1");
                 document.getElementById("co2_left").innerHTML = co2_left;
                 document.getElementById("co2_right").innerHTML = co2_right;
-                if (co2_left > 300) {
-                    if (co2_right > 200) {
+                if (co2_left > 170) {
+                    if (co2_right > 120) {
                         cpf.request('["analogWrite",5,255],["analogWrite",3,255]');
-                    } else if (co2_right >= 100 && co2_right <= 200) {
+                    } else if (co2_right >= 70 && co2_right <= 120) {
+                        cpf.request('["analogWrite",5,255],["analogWrite",3,200]');
+                    } else if (co2_right >= 50 && co2_right < 10) {
                         cpf.request('["analogWrite",5,255],["analogWrite",3,150]');
-                    } else if (co2_right >= 50 && co2_right < 100) {
-                        cpf.request('["analogWrite",5,255],["analogWrite",3,50]');
                     } else {
                         cpf.request('["analogWrite",5,255],["analogWrite",3,0]');
                     }
-                } else if (co2_left >= 200 && co2_left <= 300) {
-                    if (co2_right > 200) {
+                } else if (co2_left >= 135 && co2_left <= 170) {
+                    if (co2_right > 120) {
+                        cpf.request('["analogWrite",5,200],["analogWrite",3,255]');
+                    } else if (co2_right >= 70 && co2_right <= 120) {
+                        cpf.request('["analogWrite",5,200],["analogWrite",3,200]');
+                    } else if (co2_right >= 50 && co2_right < 70) {
+                        cpf.request('["analogWrite",5,200],["analogWrite",3,150]');
+                    } else {
+                        cpf.request('["analogWrite",5,200],["analogWrite",3,0]');
+                    }
+                }
+                else if (co2_left >= 100 && co2_left < 135) {
+                    if (co2_right > 120) {
                         cpf.request('["analogWrite",5,150],["analogWrite",3,255]');
-                    } else if (co2_right >= 100 && co2_right <= 200) {
+                    } else if (co2_right >= 70 && co2_right <= 120) {
+                        cpf.request('["analogWrite",5,150],["analogWrite",3,200]');
+                    } else if (co2_right >= 50 && co2_right < 70) {
                         cpf.request('["analogWrite",5,150],["analogWrite",3,150]');
-                    } else if (co2_right >= 50 && co2_right < 100) {
-                        cpf.request('["analogWrite",5,150],["analogWrite",3,50]');
                     } else {
                         cpf.request('["analogWrite",5,150],["analogWrite",3,0]');
                     }
                 }
-                else if (co2_left >= 100 && co2_left < 200) {
-                    if (co2_right > 200) {
-                        cpf.request('["analogWrite",5,50],["analogWrite",3,255]');
-                    } else if (co2_right >= 100 && co2_right <= 200) {
-                        cpf.request('["analogWrite",5,50],["analogWrite",3,150]');
-                    } else if (co2_right >= 50 && co2_right < 100) {
-                        cpf.request('["analogWrite",5,50],["analogWrite",3,50]');
-                    } else {
-                        cpf.request('["analogWrite",5,50],["analogWrite",3,0]');
-                    }
-                }
                 else {
-                    if (co2_right > 200) {
+                    if (co2_right > 120) {
                         cpf.request('["analogWrite",5,0],["analogWrite",3,255]');
-                    } else if (co2_right >= 100 && co2_right <= 200) {
+                    } else if (co2_right >= 70 && co2_right <= 120) {
+                        cpf.request('["analogWrite",5,0],["analogWrite",3,200]');
+                    } else if (co2_right >= 50 && co2_right < 70) {
                         cpf.request('["analogWrite",5,0],["analogWrite",3,150]');
-                    } else if (co2_right >= 50 && co2_right < 100) {
-                        cpf.request('["analogWrite",5,0],["analogWrite",3,50]');
                     } else {
                         cpf.request('["analogWrite",5,0],["analogWrite",3,0]');
                     }
